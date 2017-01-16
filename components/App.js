@@ -45,8 +45,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#8E443D',
-    paddingTop: 10,
-    paddingHorizontal: 10,
+    padding: 10,
   },
   aces: {
     flex: 4,
