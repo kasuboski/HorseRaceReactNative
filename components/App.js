@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
+  ScrollView,
   View
 } from 'react-native';
 
@@ -10,21 +10,31 @@ import Card from './Card.js';
 export default class App extends Component {
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.markers}>
-                    <Card imageFile={require('../images/cards/back.png')} />
-                    <Card imageFile={require('../images/cards/back.png')} />
-                    <Card imageFile={require('../images/cards/back.png')} />
-                    <Card imageFile={require('../images/cards/back.png')} />
-                    <Card imageFile={require('../images/cards/back.png')} />
-                </View>
+            <View>
+                {/* need wrapper view for ScrollView to scroll */}
+                <ScrollView>
+                    <View style={styles.container}>
+                        <View style={styles.markers}>
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                            <Card imageFile={require('../images/cards/back.png')} />
+                        </View>
 
-                <View style={styles.aces}>
-                    <Card containerStyle={{marginTop: 220}} imageFile={require('../images/cards/ace_of_clubs.png')} />
-                    <Card containerStyle={{marginTop: 110}} imageFile={require('../images/cards/ace_of_spades.png')} />
-                    <Card imageFile={require('../images/cards/ace_of_hearts.png')} />
-                    <Card imageFile={require('../images/cards/ace_of_diamonds.png')} />
-                </View>
+                        <View style={styles.aces}>
+                            <Card containerStyle={{marginTop: 220}} imageFile={require('../images/cards/ace_of_clubs.png')} />
+                            <Card containerStyle={{marginTop: 110}} imageFile={require('../images/cards/ace_of_spades.png')} />
+                            <Card imageFile={require('../images/cards/ace_of_hearts.png')} />
+                            <Card imageFile={require('../images/cards/ace_of_diamonds.png')} />
+                        </View>
+                    </View>
+                </ScrollView>
             </View>
         );
     }
