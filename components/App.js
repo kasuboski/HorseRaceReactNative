@@ -11,17 +11,17 @@ import HorseCards from './HorseCards.js';
 const sideCards = [
     {
         flipped: false,
-        imageFile: require('../images/cards/2_of_spades.png'),
+        imageFile: {uri: 'card_2_of_spades'},
         suit: 'spades'
     },
     {
         flipped: false,
-        imageFile: require('../images/cards/3_of_spades.png'),
+        imageFile: {uri: 'card_3_of_spades'},
         suit: 'spades'
     },
     {
         flipped: true,
-        imageFile: require('../images/cards/2_of_hearts.png'),
+        imageFile: {uri: 'card_2_of_hearts'},
         suit: 'hearts'
     }
 ];
@@ -30,22 +30,22 @@ const aces = [
     {
         suit: 'clubs',
         position: 1,
-        image: require('../images/cards/ace_of_clubs.png')
+        image: {uri: 'card_ace_of_clubs'}
     },
     {
         suit: 'spades',
         position: 0,
-        image: require('../images/cards/ace_of_spades.png')
+        image: {uri: 'card_ace_of_spades'}
     },
     {
         suit: 'hearts',
         position: 2,
-        image: require('../images/cards/ace_of_hearts.png')
+        image: {uri: 'card_ace_of_hearts'}
     },
     {
         suit: 'diamonds',
         position: 0,
-        image: require('../images/cards/ace_of_diamonds.png')
+        image: {uri: 'card_ace_of_diamonds'}
     },
 ];
 
