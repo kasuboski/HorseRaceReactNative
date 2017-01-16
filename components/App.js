@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import SideCards from './SideCards.js';
-import Card, {CARD_HEIGHT, CARD_MARGIN_TOP} from './Card.js';
+import HorseCards from './HorseCards.js';
 
 const sideCards = [
     {
@@ -57,15 +57,9 @@ export default class App extends Component {
                             containerStyle={styles.markers}
                             cards={sideCards} />
 
-                        <View style={styles.aces}>
-                            {aces.map((info, id) => {
-                                const style = {marginTop: ((CARD_HEIGHT + CARD_MARGIN_TOP) * info.position)};
-                                return <Card key={id}
-                                    containerStyle={style}
-                                    imageFile={info.image} />
-                            })}
-
-                        </View>
+                        <HorseCards
+                            containerStyle={styles.aces}
+                            cards={aces} />
                     </View>
                 </ScrollView>
             </View>
