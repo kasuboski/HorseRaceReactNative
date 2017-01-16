@@ -6,7 +6,7 @@ import {
   View
 } from 'react-native';
 
-import App from './App.js';
+import App from './components/App.js';
 
 export default class HorseRace extends Component {
   render() {
