@@ -11,15 +11,18 @@ import HorseCards from './HorseCards.js';
 const sideCards = [
     {
         flipped: false,
-        imageFile: require('../images/cards/2_of_spades.png')
+        imageFile: require('../images/cards/2_of_spades.png'),
+        suit: 'spades'
     },
     {
         flipped: false,
-        imageFile: require('../images/cards/3_of_spades.png')
+        imageFile: require('../images/cards/3_of_spades.png'),
+        suit: 'spades'
     },
     {
         flipped: true,
-        imageFile: require('../images/cards/2_of_hearts.png')
+        imageFile: require('../images/cards/2_of_hearts.png'),
+        suit: 'hearts'
     }
 ];
 
