@@ -10,12 +10,11 @@ import Card from './Card.js';
 export default class App extends Component {
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 {/* need wrapper view for ScrollView to scroll */}
                 <ScrollView>
-                    <View style={styles.container}>
+                    <View style={styles.cardContainer}>
                         <View style={styles.markers}>
-                            <Card imageFile={require('../images/cards/back.png')} />
                             <Card imageFile={require('../images/cards/back.png')} />
                             <Card imageFile={require('../images/cards/back.png')} />
                             <Card imageFile={require('../images/cards/back.png')} />
@@ -43,9 +42,12 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
     backgroundColor: '#8E443D',
-    padding: 10,
+  },
+  cardContainer: {
+      flex: 1,
+      flexDirection: 'row',
+      padding: 10,
   },
   aces: {
     flex: 4,
