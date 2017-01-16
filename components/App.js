@@ -8,28 +8,14 @@ import {
 import SideCards from './SideCards.js';
 import HorseCards from './HorseCards.js';
 
-const sideCards = [
-    {
-        flipped: false,
-        imageFile: {uri: 'card_2_of_spades'},
-        suit: 'spades'
-    },
-    {
-        flipped: false,
-        imageFile: {uri: 'card_3_of_spades'},
-        suit: 'spades'
-    },
-    {
-        flipped: true,
-        imageFile: {uri: 'card_2_of_hearts'},
-        suit: 'hearts'
-    }
-];
+import { generateSideCards } from '../Util.js';
+
+const sideCards = generateSideCards(6).map((val) => ({...val, flipped: true}));
 
 const aces = [
     {
         suit: 'clubs',
-        position: 1,
+        position: 0,
         image: {uri: 'card_ace_of_clubs'}
     },
     {
@@ -39,7 +25,7 @@ const aces = [
     },
     {
         suit: 'hearts',
-        position: 2,
+        position: 0,
         image: {uri: 'card_ace_of_hearts'}
     },
     {
