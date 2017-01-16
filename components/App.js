@@ -7,24 +7,36 @@ import {
 
 import Card from './Card.js';
 
+const sideCards = [
+    {
+        flipped: false,
+        imageFile: '../images/cards/2_of_spades.png'
+    },
+    {
+        flipped: false,
+        imageFile: '../images/cards/3_of_spades.png'
+    },
+    {
+        flipped: false,
+        imageFile: '../images/cards/2_of_hearts.png'
+    }
+];
+
 export default class App extends Component {
     render() {
         return (
-            <View>
+            <View style={{flex:1}}>
                 {/* need wrapper view for ScrollView to scroll */}
                 <ScrollView>
                     <View style={styles.container}>
                         <View style={styles.markers}>
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
-                            <Card imageFile={require('../images/cards/back.png')} />
+                            {sideCards.map((cardInfo, id) => {
+                                const cardImage = cardInfo.flipped ? cardInfo.imageFile : require('../images/cards/back.png');
+                                return (
+                                    <Card key={id}
+                                        imageFile={cardImage} />
+                                );
+                            })}
                         </View>
 
                         <View style={styles.aces}>

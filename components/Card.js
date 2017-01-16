@@ -5,6 +5,9 @@ import {
     Image
 } from 'react-native';
 
+export const CARD_HEIGHT = 100;
+export const CARD_WIDTH = 75;
+
 const Card = ({imageFile, containerStyle}) => (
     <View style={containerStyle}>
         <Image
@@ -15,8 +18,8 @@ const Card = ({imageFile, containerStyle}) => (
 
 const styles = StyleSheet.create({
     image: {
-        width: 75,
-        height: 100,
+        width: CARD_WIDTH,
+        height: CARD_HEIGHT,
         resizeMode: 'contain',
         marginTop: 10,
     }
