@@ -5,22 +5,27 @@ import {
   View
 } from 'react-native';
 
+import Card from './Card.js';
 
 export default class App extends Component {
     render() {
         return (
-          <View style={styles.container}>
-            <Text style={styles.welcome}>
-              Welcome to React Native!
-            </Text>
-            <Text style={styles.instructions}>
-              To get started, edit index.android.js
-            </Text>
-            <Text style={styles.instructions}>
-              Double tap R on your keyboard to reload,{'\n'}
-              Shake or press menu button for dev menu
-            </Text>
-          </View>
+            <View style={styles.container}>
+                <View style={styles.markers}>
+                    <Card imageFile={require('../images/cards/back.png')} />
+                    <Card imageFile={require('../images/cards/back.png')} />
+                    <Card imageFile={require('../images/cards/back.png')} />
+                    <Card imageFile={require('../images/cards/back.png')} />
+                    <Card imageFile={require('../images/cards/back.png')} />
+                </View>
+
+                <View style={styles.aces}>
+                    <Card containerStyle={{marginTop: 220}} imageFile={require('../images/cards/ace_of_clubs.png')} />
+                    <Card containerStyle={{marginTop: 110}} imageFile={require('../images/cards/ace_of_spades.png')} />
+                    <Card imageFile={require('../images/cards/ace_of_hearts.png')} />
+                    <Card imageFile={require('../images/cards/ace_of_diamonds.png')} />
+                </View>
+            </View>
         );
     }
 }
@@ -28,18 +33,18 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    flexDirection: 'row',
+    backgroundColor: '#8E443D',
+    paddingTop: 10,
+    paddingHorizontal: 10,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  aces: {
+    flex: 4,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+  markers: {
+    flex: 1,
+    justifyContent: 'flex-start',
+  }
 });
