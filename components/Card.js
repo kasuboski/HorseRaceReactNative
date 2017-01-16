@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 export const CARD_HEIGHT = 100;
+export const CARD_MARGIN_TOP = 10;
 export const CARD_WIDTH = 75;
 
 const Card = ({imageFile, containerStyle}) => (
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
         width: CARD_WIDTH,
         height: CARD_HEIGHT,
         resizeMode: 'contain',
-        marginTop: 10,
+        marginTop: CARD_MARGIN_TOP,
     }
 })
 

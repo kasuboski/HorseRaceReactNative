@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-import Card, {CARD_HEIGHT} from './Card.js';
+import Card, {CARD_HEIGHT, CARD_MARGIN_TOP} from './Card.js';
 
 const sideCards = [
     {
@@ -64,7 +64,7 @@ export default class App extends Component {
 
                         <View style={styles.aces}>
                             {aces.map((info, id) => {
-                                const style = {marginTop: ((CARD_HEIGHT + 10) * info.position)};
+                                const style = {marginTop: ((CARD_HEIGHT + CARD_MARGIN_TOP) * info.position)};
                                 return <Card key={id}
                                     containerStyle={style}
                                     imageFile={info.image} />
