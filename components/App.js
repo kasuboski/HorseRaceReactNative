@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 
+import SideCards from './SideCards.js';
 import Card, {CARD_HEIGHT, CARD_MARGIN_TOP} from './Card.js';
 
 const sideCards = [
@@ -52,15 +53,9 @@ export default class App extends Component {
                 {/* need wrapper view for ScrollView to scroll */}
                 <ScrollView>
                     <View style={styles.cardContainer}>
-                        <View style={styles.markers}>
-                            {sideCards.map((cardInfo, id) => {
-                                const cardImage = cardInfo.flipped ? cardInfo.imageFile : require('../images/cards/back.png');
-                                return (
-                                    <Card key={id}
-                                        imageFile={cardImage} />
-                                );
-                            })}
-                        </View>
+                        <SideCards
+                            containerStyle={styles.markers}
+                            cards={sideCards} />
 
                         <View style={styles.aces}>
                             {aces.map((info, id) => {
