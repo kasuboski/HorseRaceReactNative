@@ -5,6 +5,7 @@ import {
   View
 } from 'react-native';
 
+import Card from './Card.js';
 import SideCards from './SideCards.js';
 import HorseCards from './HorseCards.js';
 
@@ -102,6 +103,10 @@ export default class App extends Component {
                             cards={this.state.aces} />
                     </View>
                 </ScrollView>
+                <Card
+                    containerStyle={styles.deckContainer}
+                    imageFile={require('../images/cards/back.png')}
+                />
             </View>
         );
     }
@@ -116,6 +121,11 @@ const styles = StyleSheet.create({
       flex: 1,
       flexDirection: 'row',
       padding: 10,
+  },
+  deckContainer: {
+      position: 'absolute',
+      bottom: 15,
+      right: 10,
   },
   aces: {
     flex: 4,
