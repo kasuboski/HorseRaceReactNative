@@ -1,26 +1,38 @@
 /*
-    Creates numCards cards to be used on the sideCards
+    Selects numCards cards from deck to be used for the sideCards
     returns an array of these cards
 */
-export function generateSideCards(numCards) {
+export function getSideCards(deck, numCards) {
     let sideCards = [];
 
     for(let i=0; i < numCards; i++) {
-        let card = generateCard();
-        while(cardIsDuplicate(sideCards, card)) {
-            card = generateCard();
-        }
-
-        sideCards.push(card);
+        sideCards.push(getRandomCard(deck));
     }
 
     return sideCards;
 }
 
+function getRandomCard(deck) {
+    return deck[getRandomNumber(0, deck.length - 1)];
+}
+
+// creates a deck of cards without the aces
+export function createDeck() {
+    let deck = [];
+
+    for(let i=2; i<=13; i++) {
+        for(let suit=0; suit < 4; suit++) {
+            deck.push(createCard(i, suit));
+        }
+    }
+
+    return deck;
+}
+
 // generates a card that isn't an ace
-function generateCard() {
-    let name = getCardName(getRandomNumber(2, 13)); // king is 13 ace is 1
-    let suit = suits[getRandomNumber(0, 3)];
+function createCard(id, suitId) {
+    let name = getCardName(id); // king is 13 ace is 1
+    let suit = suits[suitId];
     let image = {uri: `card_${name}_of_${suit}`};
 
     return {

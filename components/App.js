@@ -8,9 +8,7 @@ import {
 import SideCards from './SideCards.js';
 import HorseCards from './HorseCards.js';
 
-import { generateSideCards } from '../Util.js';
-
-const sideCards = generateSideCards(6).map((val) => ({...val, flipped: false}));
+import { createDeck, getSideCards } from '../Util.js';
 
 const aces = [
     {
@@ -39,7 +37,11 @@ export default class App extends Component {
     constructor(props) {
         super(props);
 
+        let deck = createDeck();
+        let sideCards = getSideCards(deck, 5).map((val) => ({...val, flipped: false}));
+
         this.state = {
+            deck: deck,
             sideCards: sideCards,
             aces: aces,
             lastFlippedPosition: -1
@@ -49,16 +51,12 @@ export default class App extends Component {
         this.moveAce = this.moveAce.bind(this);
     }
 
-    componentDidMount() {
-        setTimeout(this.flipCard, 1000);
-        // this.flipCard();
-    }
-
     flipCard() {
         let state = this.state;
         let sideCards = state.sideCards;
         let toFlipPosition = state.lastFlippedPosition + 1;
         let cardToFlip = sideCards[toFlipPosition];
+
         let flippedCard = {...cardToFlip, flipped: true};
 
         sideCards[toFlipPosition] = flippedCard;
@@ -87,7 +85,6 @@ export default class App extends Component {
 
         this.setState(...this.state, aces: aces);
 
-        setTimeout(this.flipCard, 1000);
     }
 
     render() {
