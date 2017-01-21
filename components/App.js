@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-import { CARD_HEIGHT } from './Card.js';
+import { CARD_HEIGHT, CARD_MARGIN_TOP } from './Card.js';
 import Deck from './Deck.js';
 import SideCards from './SideCards.js';
 import HorseCards from './HorseCards.js';
@@ -15,25 +15,28 @@ import { createDeck, getSideCards } from '../Util.js';
 const aces = [
     {
         suit: 'clubs',
-        position: 0,
+        position: -1,
         image: {uri: 'card_ace_of_clubs'}
     },
     {
         suit: 'spades',
-        position: 0,
+        position: -1,
         image: {uri: 'card_ace_of_spades'}
     },
     {
         suit: 'hearts',
-        position: 0,
+        position: -1,
         image: {uri: 'card_ace_of_hearts'}
     },
     {
         suit: 'diamonds',
-        position: 0,
+        position: -1,
         image: {uri: 'card_ace_of_diamonds'}
     },
 ];
+
+const FORWARD = 'forward';
+const BACKWARD = 'backward';
 
 export default class App extends Component {
     constructor(props) {
@@ -49,13 +52,27 @@ export default class App extends Component {
             lastFlippedPosition: -1
         };
 
-        this.flipCard = this.flipCard.bind(this);
+        this.onPress = this.onPress.bind(this);
+        this.flipCardIfNeeded = this.flipCardIfNeeded.bind(this);
         this.moveAce = this.moveAce.bind(this);
     }
 
-    flipCard() {
+    onPress(suit) {
+        console.log('Clicked card of suit ' + suit);
+        this.moveAce(suit, FORWARD);
+    }
+
+    flipCardIfNeeded(position) {
         let state = this.state;
         let sideCards = state.sideCards;
+
+        if(position <= state.lastFlippedPosition) {
+            // don't need to flip card
+            return;
+        }
+
+        console.log(`Flip card because moved card position is ${position} and last flipped was ${state.lastFlippedPosition}`);
+
         let toFlipPosition = state.lastFlippedPosition + 1;
         let cardToFlip = sideCards[toFlipPosition];
 
@@ -70,23 +87,33 @@ export default class App extends Component {
 
         this.setState({...state, ...newState});
 
-        setTimeout(this.moveAce, 1000);
+        this.moveAce(flippedCard.suit, BACKWARD);
     }
 
-    moveAce() {
-        let lastFlippedCard = this.state.sideCards[this.state.lastFlippedPosition];
-        let cardSuit = lastFlippedCard.suit;
-
+    moveAce(cardSuit, direction) {
+        console.log(`Move ace of ${cardSuit} ${direction}`);
         // find ace to move
         let aces = this.state.aces;
         let aceToMovePos = aces.findIndex((card) => card.suit == cardSuit);
         let aceToMove = aces[aceToMovePos];
-        aceToMove = {...aceToMove, position: aceToMove.position + 1};
+
+        let pos = 0;
+        if(direction == FORWARD) {
+            pos = aceToMove.position + 1;
+        } else if(direction == BACKWARD) {
+            pos = aceToMove.position - 1;
+            pos = (pos < -1) ? -1 : pos; // can't go lower than -1
+        }
+
+        aceToMove = {...aceToMove, position: pos};
 
         aces[aceToMovePos] = aceToMove;
 
-        this.setState(...this.state, aces: aces);
+        this.setState({...this.state, aces: aces});
 
+        // TODO check that ace didn't win
+
+        setTimeout(()=>this.flipCardIfNeeded(pos), 500);
     }
 
     render() {
@@ -105,6 +132,7 @@ export default class App extends Component {
                     </View>
                 </ScrollView>
                 <Deck
+                    onPress={this.onPress}
                     cards={this.state.deck}
                     containerStyle={styles.deckContainer} />
             </View>
@@ -135,6 +163,6 @@ const styles = StyleSheet.create({
   markers: {
     flex: 1,
     justifyContent: 'flex-start',
-    marginTop: CARD_HEIGHT,
+    marginTop: CARD_HEIGHT+CARD_MARGIN_TOP,
   }
 });
