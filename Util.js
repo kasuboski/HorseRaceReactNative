@@ -1,3 +1,7 @@
+export function capitalizeWord(word) {
+    return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
 /*
     Selects numCards cards from deck to be used for the sideCards
     returns an array of these cards

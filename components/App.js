@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   ScrollView,
-  View
+  View,
+  Alert
 } from 'react-native';
 
 import { CARD_HEIGHT, CARD_MARGIN_TOP } from './Card.js';
@@ -10,9 +11,9 @@ import Deck from './Deck.js';
 import SideCards from './SideCards.js';
 import HorseCards from './HorseCards.js';
 
-import { createDeck, getSideCards } from '../Util.js';
+import { createDeck, getSideCards, capitalizeWord } from '../Util.js';
 
-const aces = [
+const acesInitial = [
     {
         suit: 'clubs',
         position: -1,
@@ -38,19 +39,23 @@ const aces = [
 const FORWARD = 'forward';
 const BACKWARD = 'backward';
 
+function resetGame() {
+    let deck = createDeck();
+    let sideCards = getSideCards(deck, 5).map((val) => ({...val, flipped: false}));
+    console.log(acesInitial);
+    return {
+        deck: deck,
+        sideCards: sideCards,
+        aces: acesInitial.slice(),
+        lastFlippedPosition: -1
+    };
+}
+
 export default class App extends Component {
     constructor(props) {
         super(props);
 
-        let deck = createDeck();
-        let sideCards = getSideCards(deck, 5).map((val) => ({...val, flipped: false}));
-
-        this.state = {
-            deck: deck,
-            sideCards: sideCards,
-            aces: aces,
-            lastFlippedPosition: -1
-        };
+        this.state = resetGame();
 
         this.onPress = this.onPress.bind(this);
         this.flipCardIfNeeded = this.flipCardIfNeeded.bind(this);
@@ -106,7 +111,15 @@ export default class App extends Component {
         }
 
         if(pos >= this.state.sideCards.length) {
-            console.log(cardSuit + ' won!');
+            let message = capitalizeWord(cardSuit) + ' won!'
+            console.log(message);
+            Alert.alert(
+                'Game Over',
+                message,
+                [
+                    {text: 'OK', onPress: () => this.setState(resetGame())}
+                ]
+            );
             return;
         }
 
