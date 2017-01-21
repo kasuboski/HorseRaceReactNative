@@ -23,6 +23,7 @@ export default class Deck extends Component {
 
     onPressInternal() {
         let suit = this.state.deck[0].suit;
+        // TODO handle deck running out
         let deck = this.state.deck.slice(1);
         let newState = {deck: deck};
         if(!this.state.beenClickedOnce) {

@@ -20,6 +20,7 @@ function getRandomCard(deck) {
 }
 
 // creates a deck of cards without the aces
+// TODO shuffle the deck before returning
 export function createDeck() {
     let deck = [];
 
@@ -32,7 +33,6 @@ export function createDeck() {
     return deck;
 }
 
-// generates a card that isn't an ace
 function createCard(id, suitId) {
     let name = getCardName(id); // king is 13 ace is 1
     let suit = suits[suitId];

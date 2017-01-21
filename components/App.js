@@ -105,13 +105,16 @@ export default class App extends Component {
             pos = (pos < -1) ? -1 : pos; // can't go lower than -1
         }
 
+        if(pos >= this.state.sideCards.length) {
+            console.log(cardSuit + ' won!');
+            return;
+        }
+
         aceToMove = {...aceToMove, position: pos};
 
         aces[aceToMovePos] = aceToMove;
 
         this.setState({...this.state, aces: aces});
-
-        // TODO check that ace didn't win
 
         setTimeout(()=>this.flipCardIfNeeded(pos), 500);
     }
