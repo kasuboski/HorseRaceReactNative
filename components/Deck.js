@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
     View,
-    TouchableHighlight,
+    TouchableOpacity,
 } from 'react-native';
 
 import Card from './Card.js';
@@ -42,13 +42,13 @@ export default class Deck extends Component {
         };
 
         return (
-            <TouchableHighlight style={this.containerStyle} onPress={this.onPressInternal}>
+            <TouchableOpacity style={this.containerStyle} onPress={this.onPressInternal}>
                 <View>
                     <Card
                         imageFile={cardToShow()}
                     />
                 </View>
-            </TouchableHighlight>
+            </TouchableOpacity>
         );
     }
 };
