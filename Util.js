@@ -13,7 +13,10 @@ export function getSideCards(deck, numCards) {
 }
 
 function getRandomCard(deck) {
-    return deck[getRandomNumber(0, deck.length - 1)];
+    let randomIndex = getRandomNumber(0, deck.length - 1);
+    let card = deck[randomIndex];
+    deck.splice(randomIndex, 1);
+    return card;
 }
 
 // creates a deck of cards without the aces
