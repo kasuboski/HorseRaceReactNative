@@ -6,6 +6,8 @@ import {
   Alert
 } from 'react-native';
 
+import { Actions, ActionConst } from 'react-native-router-flux';
+
 import { CARD_HEIGHT, CARD_MARGIN_TOP } from './Card.js';
 import Deck from './Deck.js';
 import SideCards from './SideCards.js';
@@ -111,13 +113,15 @@ export default class RaceScreen extends Component {
         }
 
         if(pos >= this.state.sideCards.length) {
-            let message = capitalizeWord(cardSuit) + ' won!'
+            let message = capitalizeWord(cardSuit) + ' won! ';
+            message += 'Play Again?';
             console.log(message);
             Alert.alert(
                 'Game Over',
                 message,
                 [
-                    {text: 'OK', onPress: () => this.setState(resetGame())}
+                    {text: 'NO', onPress: () => Actions.home({type: ActionConst.RESET})},
+                    {text: 'YES', onPress: () => this.setState(resetGame())}
                 ]
             );
             return;
